@@ -1,3 +1,4 @@
+using FinTrackPro.Application;
 using FinTrackPro.Domain.Entities;
 using FinTrackPro.Infrastructure;
 using FinTrackPro.Infrastructure.Persistence;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
