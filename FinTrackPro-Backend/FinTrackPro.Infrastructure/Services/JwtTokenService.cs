@@ -48,4 +48,6 @@ public sealed class JwtTokenService : IJwtTokenService
     {
         return Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
     }
+
+    public int AccessTokenExpirationMinutes => _jwtSettings.AccessTokenExpirationMinutes;
 }
