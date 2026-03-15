@@ -43,6 +43,13 @@ public sealed class ExceptionHandlingMiddleware
                 Detail = notFoundException.Message,
             },
 
+            UnauthorizedException unauthorizedException => new ProblemDetails
+            {
+                Status = StatusCodes.Status401Unauthorized,
+                Title = "Unauthorized",
+                Detail = unauthorizedException.Message,
+            },
+
             DomainException domainException => new ProblemDetails
             {
                 Status = StatusCodes.Status422UnprocessableEntity,
