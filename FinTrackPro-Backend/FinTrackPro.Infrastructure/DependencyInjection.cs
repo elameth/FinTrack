@@ -27,6 +27,7 @@ public static class DependencyInjection
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
