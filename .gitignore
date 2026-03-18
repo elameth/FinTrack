@@ -140,8 +140,34 @@ appsettings.Development.json
 # User secrets
 secrets.json
 
-# Node modules (if using frontend)
+# Node modules
 node_modules/
+
+# Frontend build output
+dist/
+dist-ssr/
+
+# Local override files (Vite, dotenv, etc.)
+*.local
+
+# Frontend debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Frontend build/test cache
+.cache/
+.vite/
+coverage/
+
+# Node Tools for Visual Studio
+*.ntvs*
+*.njsproj
+
+# Vim swap files
+*.sw?
 
 # Mac
 .DS_Store
