@@ -3,10 +3,6 @@ import { useAuth } from './contexts/AuthContext.tsx'
 import LoginPage from './pages/LoginPage.tsx'
 import RegisterPage from './pages/RegisterPage.tsx'
 
-// --- ROUTE GUARD ---
-// A small component that protects routes. If the user is not authenticated,
-// it redirects to /login. "replace" means this redirect won't appear in
-// browser history (hitting "back" won't loop you back to the redirect).
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
     const { isAuthenticated } = useAuth()
     if (!isAuthenticated) {
@@ -15,8 +11,6 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     return children
 }
 
-// --- HOME PAGE (placeholder) ---
-// Just proves that auth works. Shows the logged-in user's info and a logout button.
 function HomePage() {
     const { user, logout } = useAuth()
 
@@ -39,9 +33,6 @@ function HomePage() {
     )
 }
 
-// --- APP (root component) ---
-// Routes is react-router's router — it looks at the current URL and renders
-// the matching Route's element. Think of it like a switch statement on the URL path.
 export default function App() {
     return (
         <Routes>
