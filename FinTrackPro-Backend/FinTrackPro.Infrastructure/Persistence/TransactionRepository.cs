@@ -68,4 +68,22 @@ public sealed class TransactionRepository : ITransactionRepository
 
         return (items, totalCount);
     }
+
+    public async Task<decimal> GetSpentAmountAsync(
+        Guid userId,
+        Guid categoryId,
+        DateTime periodStart,
+        DateTime periodEnd,
+        CancellationToken cancellationToken)
+    {
+        return await _dbContext.Transactions
+            .Where(transaction =>
+                transaction.UserId == userId
+                && transaction.CategoryId == categoryId
+                && transaction.TransactionType == TransactionType.Expense
+                && !transaction.IsDeleted
+                && transaction.Date >= periodStart
+                && transaction.Date <= periodEnd)
+            .SumAsync(transaction => transaction.Amount.Amount, cancellationToken);
+    }
 }

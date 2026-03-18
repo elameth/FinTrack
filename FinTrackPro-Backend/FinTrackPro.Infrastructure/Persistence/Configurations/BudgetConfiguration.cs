@@ -32,28 +32,10 @@ public sealed class BudgetConfiguration : IEntityTypeConfiguration<Budget>
                 .IsRequired();
         });
 
-        builder.OwnsOne(budget => budget.SpentAmount, spentBuilder =>
-        {
-            spentBuilder.Property(money => money.Amount)
-                .HasColumnName("SpentAmount")
-                .HasPrecision(18, 2)
-                .IsRequired();
+        builder.Property(budget => budget.Period)
+            .IsRequired();
 
-            spentBuilder.Property(money => money.Currency)
-                .HasColumnName("SpentCurrency")
-                .IsRequired();
-        });
-
-        builder.OwnsOne(budget => budget.Period, periodBuilder =>
-        {
-            periodBuilder.Property(dateRange => dateRange.StartDate)
-                .HasColumnName("PeriodStartDate")
-                .IsRequired();
-
-            periodBuilder.Property(dateRange => dateRange.EndDate)
-                .HasColumnName("PeriodEndDate")
-                .IsRequired();
-        });
+        builder.Property(budget => budget.StartDate);
 
         builder.Property(budget => budget.CreatedAt)
             .IsRequired();

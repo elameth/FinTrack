@@ -23,12 +23,7 @@ public sealed class CreateBudgetCommandValidator : AbstractValidator<CreateBudge
         RuleFor(command => command.Currency)
             .IsInEnum();
 
-        RuleFor(command => command.PeriodStartDate)
-            .NotEmpty();
-
-        RuleFor(command => command.PeriodEndDate)
-            .NotEmpty()
-            .GreaterThanOrEqualTo(command => command.PeriodStartDate)
-            .WithMessage("Period end date must be on or after start date.");
+        RuleFor(command => command.Period)
+            .IsInEnum();
     }
 }

@@ -10,6 +10,8 @@ public sealed record BudgetDto(
     Guid UserId,
     decimal Amount,
     Currency Currency,
+    BudgetPeriod Period,
+    DateTime? StartDate,
     DateTime PeriodStartDate,
     DateTime PeriodEndDate,
     decimal SpentAmount,
@@ -17,10 +19,12 @@ public sealed record BudgetDto(
     DateTime CreatedAt,
     DateTime? UpdatedAt)
 {
-    public static BudgetDto FromEntity(Budget budget)
+    public static BudgetDto FromEntity(Budget budget, decimal spentAmount)
     {
+        var currentPeriod = budget.GetCurrentPeriodRange();
+
         var spentPercentage = budget.Amount.Amount > 0
-            ? Math.Round(budget.SpentAmount.Amount / budget.Amount.Amount * 100, 2)
+            ? Math.Round(spentAmount / budget.Amount.Amount * 100, 2)
             : 0m;
 
         return new BudgetDto(
@@ -30,9 +34,11 @@ public sealed record BudgetDto(
             budget.UserId,
             budget.Amount.Amount,
             budget.Amount.Currency,
-            budget.Period.StartDate,
-            budget.Period.EndDate,
-            budget.SpentAmount.Amount,
+            budget.Period,
+            budget.StartDate,
+            currentPeriod.StartDate,
+            currentPeriod.EndDate,
+            spentAmount,
             spentPercentage,
             budget.CreatedAt,
             budget.UpdatedAt);

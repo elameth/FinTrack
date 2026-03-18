@@ -10,5 +10,5 @@ public record CreateBudgetCommand(
     Guid CategoryId,
     decimal Amount,
     Currency Currency,
-    DateTime PeriodStartDate,
-    DateTime PeriodEndDate) : IRequest<BudgetDto>;
+    BudgetPeriod Period,
+    DateTime? StartDate) : IRequest<BudgetDto>;

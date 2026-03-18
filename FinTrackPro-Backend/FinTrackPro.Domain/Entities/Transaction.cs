@@ -64,7 +64,7 @@ public class Transaction
         Id = id;
         TransactionType = transactionType;
         Amount = amount;
-        Date = date;
+        Date = DateTime.SpecifyKind(date, DateTimeKind.Utc);
         Description = description.Trim();
         AccountId = accountId;
         UserId = userId;

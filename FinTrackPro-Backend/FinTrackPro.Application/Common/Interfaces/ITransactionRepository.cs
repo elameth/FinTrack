@@ -18,4 +18,11 @@ public interface ITransactionRepository
         Guid? categoryId,
         Guid? accountId,
         CancellationToken cancellationToken);
+
+    Task<decimal> GetSpentAmountAsync(
+        Guid userId,
+        Guid categoryId,
+        DateTime periodStart,
+        DateTime periodEnd,
+        CancellationToken cancellationToken);
 }

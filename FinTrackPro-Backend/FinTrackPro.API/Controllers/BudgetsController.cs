@@ -49,8 +49,8 @@ public sealed class BudgetsController : ControllerBase
             request.CategoryId,
             request.Amount,
             request.Currency,
-            request.PeriodStartDate,
-            request.PeriodEndDate);
+            request.Period,
+            request.StartDate);
 
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
@@ -62,5 +62,5 @@ public sealed record CreateBudgetRequest(
     Guid CategoryId,
     decimal Amount,
     Currency Currency,
-    DateTime PeriodStartDate,
-    DateTime PeriodEndDate);
+    BudgetPeriod Period,
+    DateTime? StartDate);
